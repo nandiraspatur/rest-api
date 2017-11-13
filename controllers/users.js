@@ -30,11 +30,16 @@ let create = (req, res) => {
 }
 
 let update = (req, res) => {
-  Model.User.update(req.body,{where:req.params}).then(() => {
-    res.send('User Updated!')
-  }).catch(err => {
-    res.send(err)
-  })
+  bcrypt.hash(req.body.password, 10, function(err, hash) {
+    if(req.body.password){
+      req.body.password = hash
+    }
+    Model.User.update(req.body,{where:req.params}).then(() => {
+      res.send('User Updated!')
+    }).catch(err => {
+      res.send(err)
+    })
+  });
 }
 
 let destroy = (req, res) => {
@@ -79,7 +84,7 @@ let signup = (req, res) => {
     req.body.password = hash
     req.body.is_admin = false
     Model.User.create(req.body).then(() => {
-      res.send('User Created!')
+      res.send('Signup Success!')
     }).catch(err => {
       res.send(err)
     })

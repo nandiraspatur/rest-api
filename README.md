@@ -34,4 +34,6 @@ with only npm:
 npm start
 npm run dev</pre>
 
+Add your SECRET_KEY to ```.env_template``` and rename file to ```.env``` before use this API
+
 Access the website via ```http://localhost:3000``` or API via ```http://localhost:3000/api```.

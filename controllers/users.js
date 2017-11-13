@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const Model = require('../models');
 const jwt = require('jsonwebtoken');
+var dotenv = require('dotenv').config()
 
 let findAll = (req, res) => {
   Model.User.findAll().then(users => {
@@ -59,7 +60,7 @@ let signin = (req, res) => {
                         username:user.username,
                         is_admin: user.is_admin
                       }
-        let secret = 'RahAsia109283@7#847@&%QWERTY'
+        let secret = process.env.SECRET_KEY
         jwt.sign(payload, secret, function(err, token) {
           if(!err){
             req.headers.token = token

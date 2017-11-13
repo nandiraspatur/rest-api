@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 let isLogin = (req, res, next) => {
-  let secret = 'RahAsia109283@7#847@&%QWERTY'
+  let secret = process.env.SECRET_KEY
   jwt.verify(req.headers.token, secret, function(err, decoded) {
     if(!err){
       req.userLogged = decoded

@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const Model = require('../models');
+const jwt = require('jsonwebtoken');
 
 let findAll = (req, res) => {
   Model.User.findAll().then(users => {
@@ -28,8 +29,69 @@ let create = (req, res) => {
   });
 }
 
+let update = (req, res) => {
+  Model.User.update(req.body,{where:req.params}).then(() => {
+    res.send('User Updated!')
+  }).catch(err => {
+    res.send(err)
+  })
+}
+
+let destroy = (req, res) => {
+  Model.User.destroy({where:req.params}).then(() => {
+    res.send('User Deleted!')
+  }).catch(err => {
+    res.send(err)
+  })
+}
+
+let signin = (req, res) => {
+  Model.User.findOne({where:{username:req.body.username}}).then(user => {
+    bcrypt.compare(req.body.password, user.password, function(err, resp) {
+      if(!err){
+        let payload = {
+                        id: user.id,
+                        username:user.username,
+                        is_admin: user.is_admin
+                      }
+        let secret = 'RahAsia109283@7#847@&%QWERTY'
+        jwt.sign(payload, secret, function(err, token) {
+          if(!err){
+            req.headers.token = token
+            res.send(req.headers);
+          }else{
+            res.status(401).send(err)
+          }
+        });
+      }else{
+        res.status(401).send({
+          message: 'Incorrect username/password!!'
+        })
+      }
+    });
+  }).catch(err => {
+    res.status(401).send(err)
+  })
+}
+
+let signup = (req, res) => {
+  bcrypt.hash(req.body.password, 10, function(err, hash) {
+    req.body.password = hash
+    req.body.is_admin = false
+    Model.User.create(req.body).then(() => {
+      res.send('User Created!')
+    }).catch(err => {
+      res.send(err)
+    })
+  });
+}
+
 module.exports = {
   findAll,
   findById,
-  create
+  create,
+  update,
+  destroy,
+  signin,
+  signup
 }

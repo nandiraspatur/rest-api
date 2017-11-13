@@ -1,27 +1,20 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const usersControl = require('../controllers/users');
+const checkAuth = require('../middleware/checkAuth')
 
-router.post('/signup', function(req, res) {
-  res.send(req.body)
-});
+router.post('/signup', usersControl.signup);
 
-router.post('/signin', function(req, res) {
-  res.send(req.body)
-});
+router.post('/signin', usersControl.signin);
 
-router.get('/users', usersControl.findAll);
+router.get('/users', checkAuth.isLogin, checkAuth.isAdmin, usersControl.findAll);
 
-router.get('/users/:id', usersControl.findById);
+router.get('/users/:id', checkAuth.isLogin, checkAuth.authenticated, usersControl.findById);
 
-router.post('/users', usersControl.create);
+router.post('/users', checkAuth.isLogin, checkAuth.isAdmin, usersControl.create);
 
-router.delete('/users/:id', function(req, res) {
-  res.send('delete user')
-});
+router.delete('/users/:id', checkAuth.isLogin, checkAuth.isAdmin, usersControl.destroy);
 
-router.put('/users/:id', function(req, res) {
-  res.send('update user')
-});
+router.put('/users/:id', checkAuth.isLogin, checkAuth.authenticated, usersControl.update);
 
 module.exports = router;

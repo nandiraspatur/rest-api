@@ -6,78 +6,27 @@ Demo App with basic REST API.
 
 List of basic routes:
 
-<table>
-	<tr>
-    	<td><b>Route</b></td>
-        <td><b>HTTP</b></td>
-        <td><b>Description</b></td>
-    </tr>
-    <tr>
-    	<td><span style="color:red;">/api/hello?name={name}</span></td>
-        <td>GET</td>
-        <td>Print hello, <span style="color:red;">{name}</span> !</td>
-    </tr>
-</table>
+| Route | HTTP | Description |
+|-------|------|-------------|
+| ```/api/hello?name={name}``` | GET | Print hello, ```{name}```
 
 List of user routes:
 
-<table>
-	<tr>
-    	<td><b>Route</b></td>
-        <td><b>HTTP</b></td>
-        <td><b>Description</b></td>
-    </tr>
-    <tr>
-    	<td><span style="color:red;">/api/users</span></td>
-        <td>GET</td>
-        <td>Get all the users</td>
-    </tr>
-    <tr>
-    	<td><span style="color:red;">/api/users/:id</span></td>
-        <td>GET</td>
-        <td>Get a single user</td>
-    </tr>
-    <tr>
-    	<td><span style="color:red;">/api/users</span></td>
-        <td>POST</td>
-        <td>Create a user</td>
-    </tr>
-    <tr>
-    	<td><span style="color:red;">/api/users/:id</span></td>
-        <td>DELETE</td>
-        <td>Delete a user</td>
-    </tr>
-    <tr>
-    	<td><span style="color:red;">/api/users/:id</span></td>
-        <td>PUT</td>
-        <td>Update a user with new info</td>
-    </tr>
-    <tr>
-    	<td><span style="color:red;">/api/users/:id</span></td>
-        <td>PATCH</td>
-        <td>Update a user with specific new info</td>
-    </tr>
-</table>
+| Route | HTTP | Description |
+|-------|------|-------------|
+| ```/api/users``` | GET | Get all the users |
+| ```/api/users/:id```|	GET	| Get a single user |
+| ```/api/users```	| POST	| Create a user |
+| ```/api/users/:id``` |	DELETE	| Delete a user |
+| ```/api/users/:id```	| PUT	| Update a user with new info |
+| ```/api/users/:id```	| PATCH	| Update a user with specific new info |
 
 List of filter routes:
 
-<table>
-	<tr>
-    	<td><b>Route</b></td>
-        <td><b>HTTP</b></td>
-        <td><b>Description</b></td>
-    </tr>
-    <tr>
-    	<td><span style="color:red;">/api/users?name="{name}"</span></td>
-        <td>GET</td>
-        <td>Get <span style="color:red;">{name}</span> match in users</td>
-    </tr>
-    <tr>
-    	<td><span style="color:red;">/api/users?name="{na}"</span></td>
-        <td>GET</td>
-        <td>Get <span style="color:red;">{na}</span> like in users</td>
-    </tr>
-</table>
+| Route | HTTP | Description |
+|-------|------|-------------|
+| ```/api/users?name="{name}"``` |	GET |	Get ```{name}``` match in users |
+| ```/api/users?name="{na}"```	| GET |	Get ```{na}``` like in users |
 
 #### USAGE
 with only npm:
@@ -85,4 +34,4 @@ with only npm:
 npm start
 npm run dev</pre>
 
-Access the website via <code>http://localhost:3000</code> or API via <code>http://localhost:3000/api</code>.
+Access the website via ```http://localhost:3000``` or API via ```http://localhost:3000/api```.

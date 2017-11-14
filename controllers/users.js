@@ -7,7 +7,7 @@ let findAll = (req, res) => {
   Model.User.findAll().then(users => {
     res.send(users)
   }).catch(err => {
-    res.send(err)
+    res.status(500).send(err)
   })
 }
 
@@ -15,7 +15,7 @@ let findById = (req, res) => {
   Model.User.findById(req.params.id).then(user => {
     res.send(user)
   }).catch(err => {
-    res.send(err)
+    res.status(500).send(err)
   })
 }
 
@@ -25,7 +25,7 @@ let create = (req, res) => {
     Model.User.create(req.body).then(() => {
       res.send('User Created!')
     }).catch(err => {
-      res.send(err)
+      res.status(500).send(err)
     })
   });
 }
@@ -38,7 +38,7 @@ let update = (req, res) => {
     Model.User.update(req.body,{where:req.params}).then(() => {
       res.send('User Updated!')
     }).catch(err => {
-      res.send(err)
+      res.status(500).send(err)
     })
   });
 }
@@ -47,7 +47,7 @@ let destroy = (req, res) => {
   Model.User.destroy({where:req.params}).then(() => {
     res.send('User Deleted!')
   }).catch(err => {
-    res.send(err)
+    res.status(500).send(err)
   })
 }
 
@@ -87,7 +87,7 @@ let signup = (req, res) => {
     Model.User.create(req.body).then(() => {
       res.send('Signup Success!')
     }).catch(err => {
-      res.send(err)
+      res.status(500).send(err)
     })
   });
 }

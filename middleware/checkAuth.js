@@ -7,7 +7,7 @@ let isLogin = (req, res, next) => {
       req.userLogged = decoded
       next()
     }else{
-      res.send({
+      res.status(401).send({
         message: 'You are not logged in..!!'
       })
     }
@@ -19,15 +19,15 @@ let isAdmin = (req, res, next) => {
   if (req.userLogged.is_admin === 'true'){
     next()
   }else{
-    res.send({message: 'Permission denied!!'})
+    res.status(401).send({message: 'Permission denied!!'})
   }
 }
 
-let authenticated = (req, res, next) => {
+let isAuthId = (req, res, next) => {
   if(req.userLogged.id == req.params.id || req.userLogged.is_admin === 'true'){
     next()
   }else{
-    res.send({
+    res.status(401).send({
       message: 'Permission denied!!'
     })
   }
@@ -36,5 +36,5 @@ let authenticated = (req, res, next) => {
 module.exports = {
   isLogin,
   isAdmin,
-  authenticated
+  isAuthId
 }

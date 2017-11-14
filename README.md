@@ -38,5 +38,5 @@ Add your SECRET_KEY to ```.env_template``` and rename file to ```.env``` before 
 
 Access the website via ```http://localhost:3000``` or API via ```http://localhost:3000/api```.
 
-Access the website via Heroku ```https://rest-api-nandiraspatur.herokuapp.com/```
+Access the website in Heroku ```https://rest-api-nandiraspatur.herokuapp.com/```
  or API via ```https://rest-api-nandiraspatur.herokuapp.com/api```
